@@ -6,17 +6,17 @@ class MiscMethods{
         System.out.println(ANSI_Clear_Term);
     }
     String[][] BaseMap = {
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," ","_","_","_"," "," "," "," "," "," "," "," "," "," "},
-        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," ","_","_","_","|"," "," "," ","|"," "," "," ","_","_","_"," "," ","|"},
-        {"|"," "," "," "," "," ","_","_","_"," "," ","_","_","_","_","|"," "," "," "," "," "," "," ","|"," "," ","|","_","_","_","|"," "},
-        {"|","_","_","_","_","|"," "," "," ","^","^"," "," "," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," "," "," "," "," "},
-        {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "}
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," ","_","_","_"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," ","_","_","_","|"," "," "," ","|"," "," "," ","_","_","_"," "," ","|"," "," "," "," "," "," "," "},
+        {"|"," "," "," "," "," ","_","_","_"," "," ","_","_","_","_","|"," "," "," "," "," "," "," ","|"," "," ","|","_","_","_","|"," "," "," "," "," "," "," "," "," "},
+        {"|","_","_","_","_","|"," "," "," ","^","^"," "," "," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+        {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "}
     };
     int PlayerX = 3;
     int PlayerY = 9;
@@ -54,6 +54,18 @@ class MiscMethods{
         }
         else ColList[2] = GivenArray[PlayerY-1][PlayerX].equalsIgnoreCase("|");
     }
+    String LastMove;
+    public void CharDetail(String GivenClass,String[][]GivenArray){
+        if (GivenClass.equalsIgnoreCase("wizard")){
+            if (LastMove.equalsIgnoreCase("right")){
+                ChangeMapChar(PlayerY,PlayerX+1,"|",GivenArray);
+            }
+            if (LastMove.equalsIgnoreCase("left")){
+                ChangeMapChar(PlayerY,PlayerX-1,"|",GivenArray);
+            }
+
+        }
+    }
 }
 
 public class Main{ //Class where things actually get executed
@@ -65,11 +77,9 @@ public class Main{ //Class where things actually get executed
         int attackcooldown = 0;
         boolean running = true;
         Scanner ActionScanner = new Scanner(System.in);
-
         Scanner scannerClass = new Scanner(System.in);
         System.out.print("Choose a class\n   -Wizard\n   -Rogue\n   -Warrior\n   -Archer\nInput class here: ");
         String classInput = scannerClass.nextLine();
-        //scannerClass.close();
         String Class = classInput;
         Misc.Clear_Term();
 
@@ -95,20 +105,21 @@ public class Main{ //Class where things actually get executed
             }
             Misc.PlayerY -= VertMom;
             
-            //Scanner ActionScanner = new Scanner(System.in);
             System.out.print("Choose an action\n   -a (left) \n   -d (right) \n   -w (jump) turns until ready: " + jumpcooldown + "\n   -e (attack) turns until ready: " + attackcooldown + "\nInput action here: ");
             String action = ActionScanner.nextLine();
             
             Misc.Clear_Term(); //Clear terminal
 
-            if (action.equalsIgnoreCase("a")){
+            if (action.equalsIgnoreCase("a")){ //
                 if (Misc.ColList[0] == false){
                     Misc.PlayerX -= 1;
+                    Misc.LastMove = "left";
                 }
             }
             if (action.equalsIgnoreCase("d")){
                 if (Misc.ColList[1] == false){
                     Misc.PlayerX += 1; 
+                    Misc.LastMove = "right";
                 }           
             }
             if (action.equalsIgnoreCase("w")){
@@ -117,18 +128,11 @@ public class Main{ //Class where things actually get executed
                 }
             }
             if (action.equalsIgnoreCase("e")){
-                //Misc.PlayerX -= 1;
             }
 
-            Misc.ChangeMapChar(Misc.PlayerY,Misc.PlayerX,"O",CopyMap);
-            Misc.PrintArray(CopyMap); //Prints final map. Goes near end
-
-            //try { //Time pause. GOES AT END!
-            //    Thread.sleep(1000); //Pause in milliseconds, curently 1 second frames
-            //} catch (InterruptedException e) {
-            //    Thread.currentThread().interrupt();
-            //    System.err.println("Thread was interupted during sleep: " + e.getMessage());
-            //}
+            Misc.ChangeMapChar(Misc.PlayerY,Misc.PlayerX,"O",CopyMap); //Replaces player coords with O on copymap
+            Misc.CharDetail(Class,CopyMap);
+            Misc.PrintArray(CopyMap); //Prints final map. Goes at end
         }
     }
 }
